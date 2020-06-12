@@ -30,19 +30,26 @@ export class OfferTypes extends Component {
   };
 
   componentDidMount = () => {
-    axios
-      .get(
-        "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs"
-      )
-      .then((response) => {
-        this.setState({
-          offers: response.data.jobs,
-        });
-      })
-      .catch((error) => {
-        alert("Erro");
+    this.shuffleJobs()
+};
+
+shuffleJobs = () => {
+  axios
+    .get(
+      "https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs"
+    )
+    .then((response) => {
+        let allJobs = response.data.jobs
+        let shuffledJobs = allJobs.sort((job1, job2) => Math.random() - Math.random())
+      this.setState({
+        offers: shuffledJobs,
       });
-  };
+    })
+    .catch((error) => {   
+      alert("Erro");
+    });
+}
+
 
   render() {
     return (

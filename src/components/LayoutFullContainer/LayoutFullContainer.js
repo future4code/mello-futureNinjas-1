@@ -96,8 +96,6 @@ export class LayoutFull extends Component {
         window.alert("Erro ao cadastrar oferta");
         console.log(error);
       });
-
-      this.getOffer()
   };
 
   componentDidMount() {
